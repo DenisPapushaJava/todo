@@ -1,24 +1,31 @@
-li {
-    display: inline;
-    cursor: default;
-    border: none;
+.buttonsFilter {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  right: 0;
+  left: 0;
 }
-li button {
-    display: inline-block;
-    color: inherit;
-    font-size: 16px;
-    margin: 3px;
-    padding: 3px 7px;
-    text-decoration: none;
-    border: 1px solid transparent;
-    border-radius: 3px;
+.buttonsFilter li {
+  display: inline;
+  cursor: default;
+  border: none;
 }
-li button:not(.selected) {
-    cursor: pointer;
+.buttonsFilter button {
+  display: inline-block;
+  color: inherit;
+  font-size: 16px;
+  margin: 3px;
+  padding: 3px 7px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
 }
-li:hover button {
-    border-color: rgba(175, 47, 47, 0.1);
+.buttonsFilter li button:not(.selected) {
+  cursor: pointer;
 }
-li button.selected {
-    border-color: rgba(175, 47, 47, 0.2);
+.buttonsFilter li:hover button {
+  border-color: rgba(175, 47, 47, 0.1);
+}
+.buttonsFilter li button.selected {
+  border-color: rgba(175, 47, 47, 0.2);
 }
