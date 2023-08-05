@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import './new-task-form.css';
 
 export default class NewTaskForm extends Component {
-  state = {
-    description: '',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      description: '',
+    };
+  }
   onInputChange = (e) => {
     this.setState({
       description: e.target.value,

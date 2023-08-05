@@ -3,11 +3,14 @@ import { formatDistanceToNow } from 'date-fns';
 import './task.css';
 
 export default class Task extends Component {
-  state = {
-    timeAgo: 'created less than 5 seconds ago',
-    toggleClass: true,
-    description: '',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      timeAgo: 'created less than 5 seconds ago',
+      toggleClass: true,
+      description: '',
+    };
+  }
 
   componentDidMount() {
     this.interval = setInterval(this.updateTime, 5000);
@@ -58,18 +61,18 @@ export default class Task extends Component {
     return (
       <li key={key} className={classNameCompleted}>
         <div className={toggleClass ? 'view' : 'edit'}>
-          <input className='toggle' type='checkbox' checked={completed} onClick={onToggle} />
+          <input className="toggle" type="checkbox" checked={completed} onClick={onToggle} />
           <label>
-            <span className='description'>{description}</span>
-            <span className='created'> {timeAgo}</span>
+            <span className="description">{description}</span>
+            <span className="created"> {timeAgo}</span>
           </label>
-          <button className='icon icon-edit' onClick={completed ? null : this.onToggleClass}></button>
-          <button className='icon icon-destroy' onClick={onDelete}></button>
+          <button className="icon icon-edit" onClick={completed ? null : this.onToggleClass}></button>
+          <button className="icon icon-destroy" onClick={onDelete}></button>
         </div>
         <form onSubmit={this.onSubmit}>
           <input
             onChange={this.onInputChange}
-            type='text'
+            type="text"
             className={toggleClass ? 'edit' : 'view'}
             defaultValue={description}
             required
