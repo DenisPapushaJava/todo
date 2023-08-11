@@ -9,24 +9,34 @@
     "plugin:react/recommended",
     "plugin:prettier/recommended",
     "plugin:import/errors",
-    "plugin:import/warnings"
+    "plugin:import/warnings",
+    "eslint-config-prettier",
+    "airbnb",
+    "prettier"
   ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 12,
+    "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier", "import"],
+  "plugins": ["react", "prettier", "import", "jsx-a11y"],
   "rules": {
-    "indent": "off",
+    "indent": ["error", 2, { "SwitchCase": 1 }],
     "prettier/prettier": "error",
     "linebreak-style": [0, "unix"],
+    "no-plusplus": "off",
+    "class-methods-use-this": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/no-autofocus": "off",
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
+    "react/jsx-props-no-spreading": "off",
+    "react/prefer-stateless-function": "off",
     "react/react-in-jsx-scope": "off",
     "react/prop-types": 0,
+    "react/static-property-placement": "off",
     "import/no-unresolved": [2, { "caseSensitive": false }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "import/order": [
@@ -43,6 +53,10 @@
         "extensions": [".js", ".jsx", ".ts", ".tsx"],
         "moduleDirectory": ["node_modules", "src/"]
       }
+    },
+    "react": {
+      "pragma": "React",
+      "version": "detect"
     }
   }
 }

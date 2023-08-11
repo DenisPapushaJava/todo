@@ -8,6 +8,7 @@ export default class NewTaskForm extends Component {
       description: '',
     };
   }
+
   onInputChange = (e) => {
     this.setState({
       description: e.target.value,
@@ -15,9 +16,11 @@ export default class NewTaskForm extends Component {
   };
 
   onSubmit = (e) => {
+    const { description } = this.state;
+    const { addTask } = this.props;
     e.preventDefault();
-    if (this.state.description) {
-      this.props.addTask(this.state.description);
+    if (description) {
+      addTask(description);
       this.setState({
         description: '',
       });

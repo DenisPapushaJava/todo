@@ -12,7 +12,7 @@ export default class Footer extends Component {
         <ul className="filters">
           <TasksFilter onToggleFilterSelected={onToggleFilterSelected} />
         </ul>
-        <button className="clear-completed" onClick={clearCompleted}>
+        <button className="clear-completed" type="button" onClick={clearCompleted}>
           Clear completed
         </button>
       </footer>

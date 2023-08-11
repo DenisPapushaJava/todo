@@ -18,15 +18,6 @@ export default class App extends Component {
     };
   }
 
-  createTask(description) {
-    return {
-      id: this.idTask++,
-      description,
-      completed: false,
-      timeCreated: Date.now(),
-    };
-  }
-
   toggleProperty(arr, id, propName) {
     const index = arr.findIndex((el) => el.id === id);
     const oldTask = arr[index];
@@ -55,6 +46,7 @@ export default class App extends Component {
       };
     });
   };
+
   updateTask = (id, description) => {
     this.setState(({ tasks }) => {
       const index = tasks.findIndex((el) => el.id === id);
@@ -97,6 +89,15 @@ export default class App extends Component {
         return tasks.filter((el) => el.completed);
     }
   };
+
+  createTask(description) {
+    return {
+      id: this.idTask++,
+      description,
+      completed: false,
+      timeCreated: Date.now(),
+    };
+  }
 
   render() {
     const { tasks, filterSelected } = this.state;
