@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './tasks-filter.css';
+import './TasksFilter.css';
 
 export default class TasksFilter extends Component {
   render() {

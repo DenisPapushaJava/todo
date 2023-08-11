@@ -1,5 +1,5 @@
-import Task from './task';
-import './task-list.css';
+import Task from '../Task/Task';
+import './TaskList.css';
 
 const TaskList = ({ tasks, onDelete, onToggle, onUpdate }) => {
   return (

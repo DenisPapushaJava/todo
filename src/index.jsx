@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import Title from './components/title';
-import NewTaskForm from './components/new-task-form';
-import TaskList from './components/task-list';
-import Footer from './components/footer';
+import Title from './components/Title/Title';
+import NewTaskForm from './components/NewTaskForm/NewTaskForm';
+import TaskList from './components/TaskList/TaskList';
+import Footer from './components/Footer/Footer';
 
 import './index.css';
 

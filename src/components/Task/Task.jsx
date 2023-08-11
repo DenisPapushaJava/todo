@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { formatDistanceToNow } from 'date-fns';
-import './task.css';
+import './Task.css';
 
 export default class Task extends Component {
   constructor(props) {
@@ -8,7 +8,7 @@ export default class Task extends Component {
     this.state = {
       timeAgo: 'created less than 5 seconds ago',
       toggleClass: true,
-      description: '',
+      description: this.props.description,
     };
   }
 
@@ -39,13 +39,10 @@ export default class Task extends Component {
     });
   };
   onSubmit = (e) => {
+    e.preventDefault();
     const { id, onUpdate } = this.props;
     const { description } = this.state;
-    e.preventDefault();
     onUpdate(id, description);
-    this.setState({
-      description: '',
-    });
     this.onToggleClass();
   };
 
