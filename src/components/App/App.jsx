@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { createRoot } from 'react-dom/client';
 
-import Title from './components/Title/Title';
-import NewTaskForm from './components/NewTaskForm/NewTaskForm';
-import TaskList from './components/TaskList/TaskList';
-import Footer from './components/Footer/Footer';
+import Title from '../Title/Title';
+import NewTaskForm from '../NewTaskForm/NewTaskForm';
+import TaskList from '../TaskList/TaskList';
+import Footer from '../Footer/Footer';
 
-import './index.css';
+import './App.css';
 
 export default class App extends Component {
   constructor(props) {
@@ -18,16 +17,6 @@ export default class App extends Component {
     };
   }
 
-  toggleProperty(arr, id, propName) {
-    const index = arr.findIndex((el) => el.id === id);
-    const oldTask = arr[index];
-    const newTask = {
-      ...oldTask,
-      [propName]: !oldTask[propName],
-    };
-    return [...arr.slice(0, index), newTask, ...arr.slice(index + 1)];
-  }
-
   addTask = (description) => {
     const newTask = this.createTask(description);
     this.setState(({ tasks }) => {
@@ -37,6 +26,7 @@ export default class App extends Component {
       };
     });
   };
+
   deleteTask = (id) => {
     this.setState(({ tasks }) => {
       const index = tasks.findIndex((el) => el.id === id);
@@ -57,13 +47,13 @@ export default class App extends Component {
       };
     });
   };
+
   onToggleCompleted = (id) => {
-    this.setState(({ tasks }) => {
-      return {
-        tasks: this.toggleProperty(tasks, id, 'completed'),
-      };
-    });
+    this.setState(({ tasks }) => ({
+      tasks: this.toggleProperty(tasks, id, 'completed'),
+    }));
   };
+
   clearCompleted = () => {
     this.setState(({ tasks }) => {
       const clearArr = tasks.filter((el) => !el.completed);
@@ -72,13 +62,13 @@ export default class App extends Component {
       };
     });
   };
+
   onToggleFilterSelected = (btn) => {
-    this.setState(() => {
-      return {
-        filterSelected: btn,
-      };
-    });
+    this.setState(() => ({
+      filterSelected: btn,
+    }));
   };
+
   showTasks = (filterSelected, tasks) => {
     switch (filterSelected) {
       case 'all':
@@ -87,8 +77,20 @@ export default class App extends Component {
         return tasks.filter((el) => !el.completed);
       case 'completed':
         return tasks.filter((el) => el.completed);
+      default:
+        return tasks; // Handle unexpected case
     }
   };
+
+  toggleProperty(arr, id, propName) {
+    const index = arr.findIndex((el) => el.id === id);
+    const oldTask = arr[index];
+    const newTask = {
+      ...oldTask,
+      [propName]: !oldTask[propName],
+    };
+    return [...arr.slice(0, index), newTask, ...arr.slice(index + 1)];
+  }
 
   createTask(description) {
     return {
@@ -127,6 +129,3 @@ export default class App extends Component {
     );
   }
 }
-
-const root = createRoot(document.getElementById('root'));
-root.render(<App />);

@@ -5,10 +5,11 @@ import './Task.css';
 export default class Task extends Component {
   constructor(props) {
     super(props);
+    const { description } = this.props;
     this.state = {
       timeAgo: 'created less than 5 seconds ago',
       toggleClass: true,
-      description: this.props.description,
+      description,
     };
   }
 
@@ -21,23 +22,28 @@ export default class Task extends Component {
   }
 
   updateTime = () => {
-    return this.setState({
-      timeAgo: 'created ' + formatDistanceToNow(this.props.timeCreate, { includeSeconds: true }) + ' ago ',
+    const { timeCreate } = this.props;
+    this.setState({
+      timeAgo: `created ${formatDistanceToNow(timeCreate, { includeSeconds: true })} ago `,
     });
   };
+
   onToggleClass = () => {
     this.setState(() => {
+      // eslint-disable-next-line react/destructuring-assignment,react/no-access-state-in-setstate
       const newClass = !this.state.toggleClass;
       return {
         toggleClass: newClass,
       };
     });
   };
+
   onInputChange = (e) => {
     this.setState({
       description: e.target.value,
     });
   };
+
   onSubmit = (e) => {
     e.preventDefault();
     const { id, onUpdate } = this.props;
@@ -63,8 +69,10 @@ export default class Task extends Component {
             <span className="description">{description}</span>
             <span className="created"> {timeAgo}</span>
           </label>
-          <button className="icon icon-edit" onClick={completed ? null : this.onToggleClass}></button>
-          <button className="icon icon-destroy" onClick={onDelete}></button>
+          {/* eslint-disable-next-line jsx-a11y/control-has-associated-label,react/button-has-type */}
+          <button className="icon icon-edit" onClick={completed ? null : this.onToggleClass} />
+          {/* eslint-disable-next-line react/button-has-type,jsx-a11y/control-has-associated-label */}
+          <button className="icon icon-destroy" onClick={onDelete} />
         </div>
         <form onSubmit={this.onSubmit}>
           <input
