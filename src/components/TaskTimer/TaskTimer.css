@@ -1,0 +1,20 @@
+.icon.icon-pause,
+.icon.icon-play {
+  font-size: 17px;
+}
+.icon.icon-play {
+  left: 230px;
+}
+.icon.icon-pause {
+  left: 250px;
+}
+.icon-pause:after {
+  content: '⏸';
+}
+
+.icon-play:after {
+  content: '▶';
+}
+.time {
+  font-size: 13px;
+}

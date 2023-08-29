@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { formatDistanceToNow } from 'date-fns';
+
 import './Task.css';
+import TaskTimer from '../TaskTimer/TaskTimer';
 
 export default class Task extends Component {
   constructor(props) {
@@ -53,7 +55,7 @@ export default class Task extends Component {
   };
 
   render() {
-    const { key, description, completed, onDelete, onToggle } = this.props;
+    const { key, description, completed, onDelete, onToggle, onStart, onPause, timesSecond } = this.props;
     const { timeAgo, toggleClass } = this.state;
 
     let classNameCompleted = '';
@@ -67,6 +69,7 @@ export default class Task extends Component {
           <input className="toggle" type="checkbox" checked={completed} onClick={onToggle} />
           <label>
             <span className="description">{description}</span>
+            <TaskTimer onStart={onStart} onPause={onPause} timesSecond={timesSecond} />
             <span className="created"> {timeAgo}</span>
           </label>
           {/* eslint-disable-next-line jsx-a11y/control-has-associated-label,react/button-has-type */}

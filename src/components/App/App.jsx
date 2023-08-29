@@ -12,7 +12,7 @@ export default class App extends Component {
     super(props);
     this.idTask = 1;
     this.state = {
-      tasks: [],
+      tasks: [this.createTask('12')],
       filterSelected: 'all',
     };
   }
@@ -82,6 +82,14 @@ export default class App extends Component {
     }
   };
 
+  onStart = (id) => {
+    this.setState(({ tasks }) => ({ tasks: this.toggleProperty(tasks, id, 'isTimer') }));
+  };
+
+  onPause = (id) => {
+    this.setState(({ tasks }) => ({ tasks: this.toggleProperty(tasks, id, 'isTimer') }));
+  };
+
   toggleProperty(arr, id, propName) {
     const index = arr.findIndex((el) => el.id === id);
     const oldTask = arr[index];
@@ -92,12 +100,14 @@ export default class App extends Component {
     return [...arr.slice(0, index), newTask, ...arr.slice(index + 1)];
   }
 
-  createTask(description) {
+  createTask(description, timesSecond) {
     return {
       id: this.idTask++,
       description,
+      timesSecond,
       completed: false,
       timeCreated: Date.now(),
+      isTimer: true,
     };
   }
 
@@ -118,6 +128,8 @@ export default class App extends Component {
             onToggle={this.onToggleCompleted}
             onUpdate={this.updateTask}
             onDelete={this.deleteTask}
+            onStart={this.onStart}
+            onPause={this.onPause}
           />
         </section>
         <Footer
