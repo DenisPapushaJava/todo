@@ -12,7 +12,7 @@ export default class App extends Component {
     super(props);
     this.idTask = 1;
     this.state = {
-      tasks: [this.createTask('12')],
+      tasks: [this.createTask('12', 600)],
       filterSelected: 'all',
     };
   }
@@ -83,10 +83,12 @@ export default class App extends Component {
   };
 
   onStart = (id) => {
+    console.log('start');
     this.setState(({ tasks }) => ({ tasks: this.toggleProperty(tasks, id, 'isTimer') }));
   };
 
   onPause = (id) => {
+    console.log('pause');
     this.setState(({ tasks }) => ({ tasks: this.toggleProperty(tasks, id, 'isTimer') }));
   };
 

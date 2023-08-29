@@ -5,7 +5,7 @@ import './TaskList.css';
 
 export default class TaskList extends Component {
   render() {
-    const { tasks, onDelete, onToggle, onUpdate, onStart, onPause, timesSecond } = this.props;
+    const { tasks, onDelete, onToggle, onUpdate, onStart, onPause } = this.props;
 
     return (
       <ul className="todo-list">
@@ -21,7 +21,7 @@ export default class TaskList extends Component {
             onDelete={() => onDelete(task.id)}
             onStart={() => onStart(task.id)}
             onPause={() => onPause(task.id)}
-            timesSecond={timesSecond}
+            timesSecond={task.timesSecond}
           />
         ))}
       </ul>
