@@ -17,8 +17,8 @@ export default class App extends Component {
     };
   }
 
-  addTask = (description) => {
-    const newTask = this.createTask(description);
+  addTask = (description, timeSeconds) => {
+    const newTask = this.createTask(description, timeSeconds);
     this.setState(({ tasks }) => {
       const newArrTasks = [...tasks, newTask];
       return {

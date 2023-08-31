@@ -24,3 +24,6 @@
 .new-todo-timer:nth-child(3) {
   padding-left: 10px;
 }
+.new-todo_submit{
+  display: none;
+}
