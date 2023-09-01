@@ -11,28 +11,25 @@ export default class NewTaskForm extends Component {
     };
   }
 
-  onInputChangeTasks = (e) => {
-    this.setState({
-      description: e.target.value,
-    });
-  };
-
-  onInputChangeMin = (e) => {
-    this.setState({
-      minutes: e.target.value,
-    });
-  };
-
-  onInputChangeSec = (e) => {
-    this.setState({
-      seconds: e.target.value,
-    });
+  onInputChange = (e) => {
+    console.log(e.type);
+    if (e.target.name === 'description')
+      this.setState({
+        description: e.target.value,
+      });
+    if (e.target.name === 'minutes')
+      this.setState({
+        minutes: e.target.value,
+      });
+    if (e.target.name === 'seconds')
+      this.setState({
+        seconds: e.target.value,
+      });
   };
 
   onSubmit = (e) => {
     const { description, minutes, seconds } = this.state;
     const { addTask } = this.props;
-    console.log(+minutes * 60 + +seconds);
     e.preventDefault();
     if (description) {
       addTask(description, +minutes * 60 + +seconds);
@@ -49,26 +46,29 @@ export default class NewTaskForm extends Component {
     return (
       <form onSubmit={this.onSubmit} className="new-todo-form">
         <input
-          onChange={this.onInputChangeTasks}
+          onChange={this.onInputChange}
           type="text"
           className="new-todo"
           placeholder="What needs to be done?"
+          name="description"
           value={description}
           autoFocus
         />
         <input
-          onChange={this.onInputChangeMin}
+          onChange={this.onInputChange}
           type="number"
           className="new-todo-timer"
+          name="minutes"
           placeholder="Min"
           min="0"
           required
           value={minutes}
         />
         <input
-          onChange={this.onInputChangeSec}
+          onChange={this.onInputChange}
           type="number"
           className="new-todo-timer"
+          name="seconds"
           placeholder="Sec"
           min="0"
           max="60"
