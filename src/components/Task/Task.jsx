@@ -55,7 +55,7 @@ export default class Task extends Component {
   };
 
   render() {
-    const { key, description, completed, onDelete, onToggle, onStart, onPause, timesSecond } = this.props;
+    const { key, description, completed, onDelete, onToggle, timesSecond } = this.props;
     const { timeAgo, toggleClass } = this.state;
 
     let classNameCompleted = '';

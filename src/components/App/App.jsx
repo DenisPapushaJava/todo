@@ -93,16 +93,6 @@ export default class App extends Component {
     }
   };
 
-  onStart = (id) => {
-    console.log(id);
-    this.updateTime(id, 10);
-    console.log(this.state);
-  };
-
-  onPause = (id) => {
-    console.log(this.state);
-    this.setState(({ tasks }) => ({ tasks: this.toggleProperty(tasks, id, 'isTimer') }));
-  };
 
   toggleProperty(arr, id, propName) {
     const index = arr.findIndex((el) => el.id === id);
@@ -142,8 +132,7 @@ export default class App extends Component {
             onToggle={this.onToggleCompleted}
             onUpdate={this.updateTask}
             onDelete={this.deleteTask}
-            onStart={this.onStart}
-            onPause={this.onPause}
+            onTime={this.updateTime}
           />
         </section>
         <Footer
