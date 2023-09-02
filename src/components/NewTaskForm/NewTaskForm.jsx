@@ -52,11 +52,14 @@ export default class NewTaskForm extends Component {
           name="description"
           placeholder="What needs to be done?"
           value={description}
+          minLength={1}
+          maxLength={25}
           autoFocus
         />
         <input
           onChange={this.onInputChange}
           type="number"
+          pattern="[0-9]*"
           className="new-todo-timer"
           name="minutes"
           placeholder="Min"
@@ -68,6 +71,7 @@ export default class NewTaskForm extends Component {
           onChange={this.onInputChange}
           type="number"
           className="new-todo-timer"
+          pattern="[0-6]{1}[0-9]*"
           name="seconds"
           placeholder="Sec"
           min="0"

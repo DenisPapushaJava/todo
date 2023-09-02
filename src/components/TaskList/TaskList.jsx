@@ -19,7 +19,7 @@ export default class TaskList extends Component {
             onToggle={() => onToggle(task.id)}
             onUpdate={onUpdate}
             onDelete={() => onDelete(task.id)}
-            onTime={() => onTime(task.id)}
+            onTime={onTime}
             timesSecond={task.timesSecond}
           />
         ))}

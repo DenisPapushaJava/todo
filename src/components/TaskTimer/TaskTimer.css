@@ -3,10 +3,10 @@
   font-size: 17px;
 }
 .icon.icon-play {
-  left: 230px;
+  left: 185px;
 }
 .icon.icon-pause {
-  left: 250px;
+  left: 205px;
 }
 .icon-pause:after {
   content: '⏸';
@@ -16,5 +16,8 @@
   content: '▶';
 }
 .time {
+  position: absolute;
+  left: 235px;
+  color: rgb(128, 128, 128);
   font-size: 13px;
 }

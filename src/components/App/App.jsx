@@ -49,10 +49,13 @@ export default class App extends Component {
   };
 
   updateTime = (id, time) => {
+    console.log(id, time);
     this.setState(({ tasks }) => {
       const index = tasks.findIndex((el) => el.id === id);
       const updateTask = [...tasks];
-      updateTask[index].timesSecond = time;
+      if (updateTask[index].timesSecond > 0 && !updateTask[index].completed) {
+        updateTask[index].timesSecond -= time;
+      }
       return {
         tasks: updateTask,
       };
@@ -92,7 +95,6 @@ export default class App extends Component {
         return tasks; // Handle unexpected case
     }
   };
-
 
   toggleProperty(arr, id, propName) {
     const index = arr.findIndex((el) => el.id === id);

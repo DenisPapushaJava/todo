@@ -12,6 +12,8 @@ export default class Task extends Component {
       timeAgo: 'created less than 5 seconds ago',
       toggleClass: true,
       description,
+      isTimer: false,
+      startId: null,
     };
   }
 
@@ -54,6 +56,29 @@ export default class Task extends Component {
     this.onToggleClass();
   };
 
+  onStart = () => {
+    const { id, onTime } = this.props;
+    const { isTimer } = this.state;
+    if (!isTimer) {
+      const timeInterval = setInterval(() => onTime(id, 1), 1000);
+      console.log(timeInterval);
+      this.setState({
+        isTimer: true,
+        startId: timeInterval,
+      });
+    }
+  };
+
+  onPause = () => {
+    const { isTimer, startId } = this.state;
+    if (isTimer) {
+      clearInterval(startId);
+      this.setState({
+        isTimer: false,
+      });
+    }
+  };
+
   render() {
     const { key, description, completed, onDelete, onToggle, timesSecond } = this.props;
     const { timeAgo, toggleClass } = this.state;
@@ -69,7 +94,7 @@ export default class Task extends Component {
           <input className="toggle" type="checkbox" checked={completed} onClick={onToggle} />
           <label>
             <span className="description">{description}</span>
-            <TaskTimer onStart={onStart} onPause={onPause} timesSecond={timesSecond} />
+            <TaskTimer onStart={this.onStart} onPause={this.onPause} timesSecond={timesSecond} />
             <span className="created"> {timeAgo}</span>
           </label>
           {/* eslint-disable-next-line jsx-a11y/control-has-associated-label,react/button-has-type */}

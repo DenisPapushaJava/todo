@@ -71,6 +71,7 @@ li label .description {
   transition: color 0.4s;
   font-weight: 400;
   color: #4d4d4d;
+  width: 140px;
 }
 
 li.completed label .description {
@@ -79,7 +80,7 @@ li.completed label .description {
 }
 .todo-list li label .created {
   font-size: 13px;
-  color: gray;
+  color: rgb(128, 128, 128);
 }
 
 li .icon {
@@ -90,7 +91,7 @@ li .icon {
   height: 40px;
   font-size: 34px;
   color: #cc9a9a;
-  margin: auto 0 11px;
+  margin: auto 0 auto;
   transition: color 0.2s ease-out;
   cursor: pointer;
 }
