@@ -13,7 +13,6 @@ export default class Task extends Component {
       toggleClass: true,
       description,
       isTimer: false,
-      startId: null,
     };
   }
 
@@ -23,6 +22,7 @@ export default class Task extends Component {
 
   componentWillUnmount() {
     clearInterval(this.interval);
+    clearInterval(this.intervalTimer);
   }
 
   updateTime = () => {
@@ -60,19 +60,18 @@ export default class Task extends Component {
     const { id, onTime } = this.props;
     const { isTimer } = this.state;
     if (!isTimer) {
-      const timeInterval = setInterval(() => onTime(id, 1), 1000);
-      console.log(timeInterval);
+      this.intervalTimer = setInterval(() => onTime(id, 1), 1000);
+      console.log(this.intervalTimer);
       this.setState({
         isTimer: true,
-        startId: timeInterval,
       });
     }
   };
 
   onPause = () => {
-    const { isTimer, startId } = this.state;
+    const { isTimer } = this.state;
     if (isTimer) {
-      clearInterval(startId);
+      clearInterval(this.intervalTimer);
       this.setState({
         isTimer: false,
       });
