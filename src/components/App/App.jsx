@@ -48,6 +48,17 @@ export default class App extends Component {
     });
   };
 
+  updateTime = (id, time) => {
+    this.setState(({ tasks }) => {
+      const index = tasks.findIndex((el) => el.id === id);
+      const updateTask = [...tasks];
+      updateTask[index].timesSecond = time;
+      return {
+        tasks: updateTask,
+      };
+    });
+  };
+
   onToggleCompleted = (id) => {
     this.setState(({ tasks }) => ({
       tasks: this.toggleProperty(tasks, id, 'completed'),
@@ -83,12 +94,13 @@ export default class App extends Component {
   };
 
   onStart = (id) => {
-    console.log('start');
-    this.setState(({ tasks }) => ({ tasks: this.toggleProperty(tasks, id, 'isTimer') }));
+    console.log(id);
+    this.updateTime(id, 10);
+    console.log(this.state);
   };
 
   onPause = (id) => {
-    console.log('pause');
+    console.log(this.state);
     this.setState(({ tasks }) => ({ tasks: this.toggleProperty(tasks, id, 'isTimer') }));
   };
 
@@ -109,7 +121,7 @@ export default class App extends Component {
       timesSecond,
       completed: false,
       timeCreated: Date.now(),
-      isTimer: true,
+      isTimer: false,
     };
   }
 

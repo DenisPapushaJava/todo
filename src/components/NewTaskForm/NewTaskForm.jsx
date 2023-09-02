@@ -12,7 +12,6 @@ export default class NewTaskForm extends Component {
   }
 
   onInputChange = (e) => {
-    console.log(e.type);
     if (e.target.name === 'description')
       this.setState({
         description: e.target.value,
@@ -30,6 +29,7 @@ export default class NewTaskForm extends Component {
   onSubmit = (e) => {
     const { description, minutes, seconds } = this.state;
     const { addTask } = this.props;
+    console.log(+minutes * 60 + +seconds);
     e.preventDefault();
     if (description) {
       addTask(description, +minutes * 60 + +seconds);
@@ -49,8 +49,8 @@ export default class NewTaskForm extends Component {
           onChange={this.onInputChange}
           type="text"
           className="new-todo"
-          placeholder="What needs to be done?"
           name="description"
+          placeholder="What needs to be done?"
           value={description}
           autoFocus
         />
