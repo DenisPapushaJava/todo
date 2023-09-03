@@ -29,7 +29,6 @@ export default class NewTaskForm extends Component {
   onSubmit = (e) => {
     const { description, minutes, seconds } = this.state;
     const { addTask } = this.props;
-    console.log(+minutes * 60 + +seconds);
     e.preventDefault();
     if (description) {
       addTask(description, +minutes * 60 + +seconds);
@@ -52,32 +51,34 @@ export default class NewTaskForm extends Component {
           name="description"
           placeholder="What needs to be done?"
           value={description}
-          minLength={1}
-          maxLength={25}
+          maxLength={5}
+          required
           autoFocus
         />
         <input
           onChange={this.onInputChange}
           type="number"
-          pattern="[0-9]*"
           className="new-todo-timer"
           name="minutes"
           placeholder="Min"
           min="0"
-          required
           value={minutes}
+          minLength={1}
+          maxLength={2}
+          required
         />
         <input
           onChange={this.onInputChange}
           type="number"
           className="new-todo-timer"
-          pattern="[0-6]{1}[0-9]*"
           name="seconds"
           placeholder="Sec"
           min="0"
           max="60"
-          required
           value={seconds}
+          minLength={1}
+          maxLength={2}
+          required
         />
         <input className="new-todo_submit" type="submit" />
       </form>

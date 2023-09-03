@@ -12,7 +12,7 @@ export default class App extends Component {
     super(props);
     this.idTask = 1;
     this.state = {
-      tasks: [this.createTask('12', 600)],
+      tasks: [],
       filterSelected: 'all',
     };
   }
@@ -49,7 +49,6 @@ export default class App extends Component {
   };
 
   updateTime = (id, time) => {
-    console.log(id, time);
     this.setState(({ tasks }) => {
       const index = tasks.findIndex((el) => el.id === id);
       const updateTask = [...tasks];

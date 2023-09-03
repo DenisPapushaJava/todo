@@ -61,7 +61,6 @@ export default class Task extends Component {
     const { isTimer } = this.state;
     if (!isTimer) {
       this.intervalTimer = setInterval(() => onTime(id, 1), 1000);
-      console.log(this.intervalTimer);
       this.setState({
         isTimer: true,
       });
